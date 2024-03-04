@@ -1,0 +1,125 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    place-items: center;
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+}
+
+#board {
+    position: relative;
+    aspect-ratio: 1/1;
+    max-width: 40rem;
+    flex-wrap: wrap;
+    display: flex;
+    width: 80%;
+}
+
+#turn {
+    border-radius: .3rem;
+    place-items: center;
+    position: fixed;
+    display: grid;
+    height: 2rem;
+    width: 2rem;
+    top: 1rem;
+}
+
+.outerslot {
+    height: calc(100% / 3);
+    width: calc(100% / 3);
+    flex-wrap: wrap;
+    display: flex;
+    padding: 5%;
+}
+
+.outerslot.cross,
+.outerslot.circle {
+    place-items: center;
+    position: relative;
+    display: grid;
+}
+
+.outerslot.circle .innerslot:nth-child(n),
+.outerslot.cross .innerslot:nth-child(n) {
+    display: none;
+}
+
+.outerslot:nth-child(-n + 2),
+.outerslot:nth-child(3n - 2),
+.outerslot:nth-child(3n - 1) {
+    border-right: .05rem solid #000000;
+}
+
+.outerslot:nth-child(-n + 6) {
+    border-bottom: .05rem solid #000000;
+}
+
+.innerslot {
+    height: calc(100% / 3);
+    width: calc(100% / 3);
+    place-items: center;
+    position: relative;
+    display: grid;
+}
+
+.innerslot:nth-child(-n + 2),
+.innerslot:nth-child(3n - 2),
+.innerslot:nth-child(3n - 1) {
+    border-right: .05rem solid #bbbbbb;
+}
+
+.innerslot:nth-child(-n + 6) {
+    border-bottom: .05rem solid #bbbbbb;
+}
+
+.circle::after {
+    border: .1rem solid black;
+    position: absolute;
+    border-radius: 50%;
+    content: '';
+    height: 60%;
+    width: 60%;
+}
+
+.cross::before,
+.cross::after {
+    background-color: black;
+    position: absolute;
+    height: .06rem;
+    content: '';
+    width: 80%;
+}
+
+.cross::before {
+    -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    transform:rotate(-45deg);
+}
+
+.cross::after {
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+
+#tie {
+    background-color: rgba(255, 255, 255, 0.8);
+    place-items: center;
+    position: fixed;
+    display: none;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+
+#tie p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 300;
+    font-size: 8rem;
+}
